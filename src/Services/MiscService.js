@@ -1,5 +1,5 @@
 import { fetch } from "../Helpers/HttpUtil";
-import { GetCompanyDetails, GetRoleDetails, GetStaffType, GetVehicleType } from "../Helpers/Url";
+import { GetBillingType, GetCompanyDetails, GetRoleDetails, GetStaffType, GetVehicleType } from "../Helpers/Url";
 
 export const getStaffTypeApi = async (successCallback) => {
     try {
@@ -48,3 +48,18 @@ export const getVehicleTypeDetailsApi = async (successCallback) => {
         successCallback([])
     }
 }
+
+export const getBillingTypeDetailsApi = async (successCallback) => {
+    try {
+        const response = await fetch(GetBillingType);
+        if (response?.status === 200) {
+             successCallback(response?.data?.BillingType)
+            //successCallback(["aayo"])
+        } else
+            successCallback(["aayena"])
+    } catch (error) {
+        successCallback([])
+    }
+}
+
+

@@ -97,6 +97,14 @@ export const settingsNav = [
         pathname: '/cancelReservation',
         exact: 'true',
     },
+    {
+        id: 20,
+        name: 'Billing Type',
+        icon: FaUserAlt,
+        pathname: '/billingtype',
+        exact: 'true',
+        isSuper: true
+    },
 ]
 
 export const reportNav = [

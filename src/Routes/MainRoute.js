@@ -38,6 +38,8 @@ import { useRoleRights } from "../CustomHooks/GetRoleRightsHook";
 import TotalAmountByUser from "../Pages/PrivatePages/Report/TotalAmountByUser";
 import ReservationDetails from "../Pages/PrivatePages/Report/ReservationDetails";
 import CancelReserve from "../Pages/PrivatePages/Route/CancelReserve";
+import BillingType from "../Pages/PrivatePages/Billing/BillingType";
+import AddBillingType from "../Pages/PrivatePages/Billing/AddBillingType";
 
 /**
  * @desc: define static routes here
@@ -113,6 +115,12 @@ const MainRoute = () => {
           <Route exact path='/addvehicletype' element={<AddVehicleType />} />
           <Route exact path='/editvehicletype' element={<AddVehicleType forEdit={true} />} />
           {/* vehicle details */}
+
+            {/* billing details */}
+            <Route exact path='/billingtype' element={<BillingType />} />
+          <Route exact path='/addbillingtype' element={<AddBillingType />} />
+          <Route exact path='/editbillingtype' element={<AddBillingType forEdit={true} />} />
+          {/* billing details */}
           {/* staff details */}
           <Route exact path='/stafftype' element={<Staff />} />
           <Route exact path='/addstafftype' element={<AddStaff />} />

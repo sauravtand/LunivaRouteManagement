@@ -1,28 +1,30 @@
-import { useEffect, useState } from "react"
 import {
     Button,
     Card,
     Table,
     Tag,
 } from 'antd';
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { getBillingTypeDetailsApi } from '../../../Services/MiscService';
 
 const BillingType = () => {
+    const [dataSource, setDataSource] = useState([])
     const navigate = useNavigate()
 
     const columns = [
         {
-            title: 'Billing Type',
-            dataIndex: 'BillingType',
-            key: 'BillingType',
+            title: 'Bill Type',
+            dataIndex: 'BillType',
+            key: 'BillType',
         },
         {
-            title: 'Amount',
-            dataIndex: 'Amount',
-            key: 'Amount',
+            title: 'Charge',
+            dataIndex: 'Charge',
+            key: 'Charge',
         },
         {
-            title: 'Status',
+            title: 'IsActive',
             dataIndex: 'IsActive',
             key: 'IsActive',
             render: (text) => (
@@ -34,41 +36,40 @@ const BillingType = () => {
         },
         {
             title: 'Action',
-            dataIndex: 'VId',
-            key: 'VId',
+            dataIndex: 'TId',
+            key: 'TId',
             render: (text) => {
                 return (
                     <Button
                         className="buttonRadius"
                         type="primary"
                         onClick={() => navigate({
-                            pathname: `/admin/addbillingtype`,
-                            search: `?q=${text}`
+                            pathname: `/admin/editbillingtype`,
+                            search: `?q=${text}`  
                         })}
                     >
                         Edit
                     </Button>
-
-                )
+                );
             }
         }
+            
+        
     ]
 
-    const dataSource = [
-        {
-          BillingType: 'Type A',
-          Amount: 100,
-          IsActive: true,
-          VId: 1,
-        },
-        {
-          BillingType: 'Type B',
-          Amount: 150,
-          IsActive: false,
-          VId: 2,
-        },
-        // Add more data objects as needed
-      ];
+    useEffect(() => {
+        getTableData()
+    }, [])
+
+    const getTableData = () => {
+        getBillingTypeDetailsApi((res) => {
+            console.log(res,"hello")
+            setDataSource(res)
+                 })
+    }
+
+
+
 
   return (
    <>

@@ -6,8 +6,8 @@ import {
   Row,
   Col,
   Card,
-  message,
-  InputNumber
+InputNumber,
+  message
 } from 'antd';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -19,28 +19,72 @@ import { AppDefaultSettings } from '../../../Config/AppDefaultSettings';
 import { buttonTailLayout } from '../../../Helpers/AntdTailLayout';
 import { useTranslation } from 'react-i18next';
 
+import { getBillingTypeDetailsApi } from '../../../Services/MiscService';
+import { setBillingTypeDetailsApi } from '../../../Services/BillingService';
+
 const AddBillingType = (props) => {
   const [form] = Form.useForm()
+  const [butDis, setButDis] = useState(false);
   const { forEdit } = props
+  const navigate = useNavigate()
+  const [searchParams] = useSearchParams();
+  const TId = searchParams.get('q')
   const [prevVal, setPrevVal] = useState({})
   const [isButtonLoad, setIsButtonLoad] = useState(false);
-  const [butDis, setButDis] = useState(false);
-  const [searchParams] = useSearchParams();
-  const VId = searchParams.get('q')
-  const { i18n } = useTranslation();
+   const { i18n } = useTranslation();
   const appDefNep = AppDefaultSettings.removeFromNepali
 
+  useEffect(() => {
+    if (forEdit) {
+        getBillingTypeDetails(TId)
+    }
+}, [forEdit, TId])
+
+  const getBillingTypeDetails = (counterId) => {
+    setIsButtonLoad(true)
+    getBillingTypeDetailsApi(res => {
+        let edData = {}
+        for (let index = 0; index < res.length; index++) {
+            const element = res[index];
+            if (element.TId === Number(counterId)) {
+                let newData = {
+                    ...element,
+                }
+                edData = newData
+                break
+            }
+        }
+        setPrevVal(edData)
+        setIsButtonLoad(false)
+    })
+}
+
+useEffect(() => {
+    if (prevVal !== "")
+        form.resetFields()
+}, [prevVal, form])
 
   const onFinish = (values) => {
     setIsButtonLoad(true)
     setButDis(true)
     let data = {
-     "BillingType":values?.BillingType,
-      "Amount": values?.Amount,
+    TId:forEdit?TId:0,
+     "BillType":values?.BillType,
       "IsActive": values.IsActive === undefined || values.IsActive === true ? true : false,
+      "Charge": values?.Charge,
   }
+  console.log(data);
 
-  console.log(data)
+  setBillingTypeDetailsApi(data, (res) => {
+    if (res?.SuccessMsg === true) {
+        message.success(res?.Message);
+        navigate(`/admin/billingtype`)
+    } else {
+        message.error('Something went wrong. Please try again')
+    }
+    setButDis(false)
+    setIsButtonLoad(false)
+})
     
 };
 const onValuesChange = (res) => {
@@ -65,7 +109,7 @@ const onValuesChange = (res) => {
                 >
                     <Form.Item
                         label="Billing Type"
-                        name='BillingType' 
+                        name='BillType' 
                         rules={[
                             {
                                 required: true,
@@ -76,8 +120,8 @@ const onValuesChange = (res) => {
                     </Form.Item>
 
                     <Form.Item
-                        label="Amount"
-                        name='Amount' 
+                        label="Charge"
+                        name='Charge' 
                         rules={[
                             {
                                 required: true,

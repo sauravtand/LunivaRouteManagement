@@ -3,11 +3,12 @@
  */
 
 // url for sthaniya yatayat
-const API_URL = `http://lunivacare.ddns.net/LunivaRouteAPI/`
+// const API_URL = `http://lunivacare.ddns.net/LunivaRouteAPI/`
 
 // url for pokhara yatayat
 
 // const API_URL = `http://lunivacare.ddns.net/LunivaRouteAPIUAT/`;
+const API_URL = `http://192.168.100.34/LunivaRoutePOKAPI/`;
 
 /**
  * @desc: api base url with route
@@ -70,8 +71,9 @@ export const GetVehicleRegistrationByVehicleId = 'GetVehicleRegistrationByVehicl
 }
  */
 export const InsertUpdateVehicleType = 'InsertUpdateVehicleType'
-//Vehicles Service
 
+//Vehicles Service
+export const InsertUpdateBillingType = 'InsertUpdateBillingType'
 //Vehicle Owner Details
 /**
  * @desc: Insert Update Vehicle Owner Details
@@ -232,6 +234,8 @@ export const GetCompanyDetails = 'GetCompanyDetails'
  * @desc: Get Vehicle Type
  */
 export const GetVehicleType = 'GetVehicleType'
+export const GetBillingType = 'GetBillingType'
+
 
 /**
  * @desc: Get Datewise Collection Details

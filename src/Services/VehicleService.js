@@ -51,3 +51,5 @@ export const setVehicleTypeDetailsApi = async (data, successCallback) => {
         successCallback([])
     }
 }
+
+

@@ -109,6 +109,14 @@ export const useNavData = () => {
             exact: 'true',
             showTab: roleAndRights.showSuperAdminAndAdmin,
         },
+        {
+            id: 21,
+            name: 'Billing Type',
+            icon: FaCarAlt,
+            pathname: '/billingtype',
+            exact: 'true',
+            showTab: roleAndRights.showOnlySuperAdmin,
+        },
     ]
 
     const reportNav = [
