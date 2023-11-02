@@ -58,7 +58,7 @@ const AddVehicleType = (props) => {
     }
 
     useEffect(() => {
-        if (prevVal !== {})
+        if (prevVal !== "")
             form.resetFields()
     }, [prevVal, form])
 
