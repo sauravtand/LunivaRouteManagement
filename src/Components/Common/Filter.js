@@ -13,12 +13,18 @@ import moment from 'moment'
 import useSingleCompany from '../../Helpers/SetDefaultCompany';
 import useGetAllCounterDetails from '../../CustomHooks/GetAllCounterHook';
 import GetAllUsersHook from '../../CustomHooks/GetAllUsersHook';
+import { getBillingTypeDetailsApi } from '../../Services/MiscService';
+import { useEffect } from 'react';
+import { useState } from 'react';
+
+
 
 const Filter = (props) => {
-    const { returnFilterData, showVehicleList, showSingleDatePicker, showCompanyList, showAll, showFromToDate, showCounter, showUsers } = props
+    const { returnFilterData, showVehicleList, showSingleDatePicker, showCompanyList, showAll, showFromToDate, showCounter, showUsers,showBillType } = props
     const { Option } = Select
     const [form] = Form.useForm()
     const allVehicleList = useGetAllVehicleDetails(0, showVehicleList)
+    const [dataSource, setDataSource] = useState([])
     const defaultCompany = useSingleCompany(0, showCompanyList)
     const allCounterList = useGetAllCounterDetails(0, showCounter)
     const allUsers = GetAllUsersHook(0, showUsers)
@@ -34,6 +40,17 @@ const Filter = (props) => {
     const onFilterReturn = (res) => {
         // console.log(res, 'resmoney');
         returnFilterData(res)
+    }
+
+    useEffect(() => {
+        getTableData()
+    }, [])
+
+    const getTableData = () => {
+        getBillingTypeDetailsApi((res) => {
+            console.log(res,"hello")
+            setDataSource(res)
+                 })
     }
 
     return (
@@ -252,6 +269,56 @@ const Filter = (props) => {
                                                 </Option>
                                             )
                                             )
+                                            }
+                                        </Select>
+                                    </Form.Item>
+                                </Col>
+                            }
+                             {
+                            showBillType &&
+                                <Col lg={6} md={12} sm={12} xs={24}>
+                                   
+           
+           
+                                    <Form.Item
+                                        name="BillID"
+                                        label="Bill Type"
+                                    >
+                                        <Select
+                                            showSearch
+                                            optionFilterProp="children"
+                                            placeholder="Select Bill Type"
+                                            filterOption={(input, option) => {
+                                                return (
+                                                    option.key.toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+                                                    option.title.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                );
+                                            }}
+                                            allowClear
+                                        >
+                                            {
+                                                showAll !== false &&
+                                                <Option
+                                                    title={'All'}
+                                                    key={0}
+                                                    value="0"
+                                                >
+                                                    All
+                                                </Option>
+                                            }
+                                            {
+                                                dataSource.map(bList => (
+                                               
+                                                    bList?.IsActive === true &&
+                                                    <Option
+                                                        title={bList?.BillType}
+                                                        key={bList?.TId}
+                                                        value={bList?.TId}
+                                                    >
+                                                        {bList?.BillType}
+                                                    </Option>
+                                                )
+                                                )
                                             }
                                         </Select>
                                     </Form.Item>

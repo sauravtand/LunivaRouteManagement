@@ -1,10 +1,13 @@
 import { MdAssignment, MdDashboard, MdDateRange } from 'react-icons/md'
 import { IoDocument } from 'react-icons/io5'
-import { BsGearFill, BsCommand, BsCashCoin } from 'react-icons/bs'
+import { BsGearFill, BsCommand, BsCashCoin, BsJournalCheck, BsClipboardData } from 'react-icons/bs'
 import { FaUserAlt, FaBusAlt, FaUserCheck, FaUserFriends, FaUserEdit, FaCarAlt, FaScroll, FaUserTie } from 'react-icons/fa'
 import { TbRoute, TbRouteOff } from 'react-icons/tb'
+import {MdReceiptLong} from 'react-icons/md'
 import { GiBusStop } from 'react-icons/gi'
 import { useRoleRights } from './GetRoleRightsHook'
+import {RiBillFill, RiBillLine} from 'react-icons/ri'
+
 
 export const useNavData = () => {
     const roleAndRights = useRoleRights()
@@ -112,7 +115,7 @@ export const useNavData = () => {
         {
             id: 21,
             name: 'Billing Type',
-            icon: FaCarAlt,
+            icon: MdReceiptLong,
             pathname: '/billingtype',
             exact: 'true',
             showTab: roleAndRights.showOnlySuperAdmin,
@@ -170,7 +173,37 @@ export const useNavData = () => {
 
         }
     ]
+    
+     const rashidNav = [
+    {
+        id:21,
+        name:'Billing Details',
+        icon: RiBillLine,
+        pathname: '/billingdetails',
+        exact: 'true',
+        showTab: true
 
+    },
+    {
+        id:22,
+        name:'Total Bill Charge',
+        icon: RiBillFill,
+        pathname: '/totalbillcharge',
+        exact: 'true',
+        showTab: true
+
+    },
+    {
+        id:23,
+        name:'Billing Summary',
+        icon: BsClipboardData,
+        pathname: '/totalbillingsummary',
+        exact: 'true',
+        showTab: true
+
+    }
+    ]
+        
 
     const navData = [
         {
@@ -212,13 +245,25 @@ export const useNavData = () => {
             hasSubMenu: true,
             subData: settingsNav
         },
+        {
+            id: 5,
+            name: 'Rashid',
+            icon: BsJournalCheck,
+            pathname: '/rashid',
+            exact: 'true',
+         showTab:true,
+            hasSubMenu: true,
+            subData: rashidNav
+        },
+     
     ]
 
     return {
         navData: navData,
         settingsNav: settingsNav,
         reportNav: reportNav,
-        registerNav: registerNav
+        registerNav: registerNav,
+        rashidNav:rashidNav
     }
 
 }

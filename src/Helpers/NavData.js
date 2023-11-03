@@ -1,6 +1,6 @@
-import { MdDashboard, MdDateRange, MdAssignment } from 'react-icons/md'
+import { MdDashboard, MdDateRange, MdAssignment, MdReceiptLong } from 'react-icons/md'
 import { IoDocument } from 'react-icons/io5'
-import { BsGearFill, BsCashCoin } from 'react-icons/bs'
+import { BsGearFill, BsCashCoin, BsJournalCheck } from 'react-icons/bs'
 import { FaUserAlt, FaBusAlt, FaUserCheck, FaUserFriends, FaUserEdit } from 'react-icons/fa'
 import { TbRoute } from 'react-icons/tb'
 import { GiBusStop } from 'react-icons/gi'
@@ -100,7 +100,7 @@ export const settingsNav = [
     {
         id: 20,
         name: 'Billing Type',
-        icon: FaUserAlt,
+        icon: MdReceiptLong,
         pathname: '/billingtype',
         exact: 'true',
         isSuper: true
@@ -152,6 +152,37 @@ export const reportNav = [
     }
 ]
 
+export const rashidNav = [
+    {
+        id:21,
+        name:'Billin Details',
+        icon: MdAssignment,
+        pathname: '/billingdetais',
+        exact: 'true',
+        showTab: true
+
+    },
+    {
+        id:22,
+        name:'Total Bill Charge',
+        icon: MdAssignment,
+        pathname: '/totalbillcharge',
+        exact: 'true',
+        showTab: true
+
+    },
+    {
+        id:23,
+        name:'Billing Summary',
+        icon: MdAssignment,
+        pathname: '/totalbillingsummary',
+        exact: 'true',
+        showTab: true
+
+    }
+]
+
+
 export const navData = [
     {
         id: 1,
@@ -187,5 +218,15 @@ export const navData = [
         exact: 'true',
         hasSubMenu: true,
         subData: settingsNav
+    },
+
+    {
+        id: 5,
+        name: 'Rashid',
+        icon: BsJournalCheck,
+        pathname: '/rashid',
+        exact: 'true',
+        hasSubMenu: true,
+        subData: rashidNav
     },
 ]

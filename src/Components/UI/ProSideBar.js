@@ -57,8 +57,8 @@ const ProSide = (props) => {
                                                         }
                                                     </SubMenu>
                                                     :
-                                                    <MenuItem key={index} icon={<e.icon />}>
-                                                        <NavLink className={`sideBarItem`} key={index} to={`/admin${e.pathname}`}>
+                                                    <MenuItem key={e.id} icon={<e.icon />}>
+                                                        <NavLink className={`sideBarItem`}  to={`/admin${e.pathname}`}>
                                                             <span>{e.name}</span>
                                                         </NavLink>
                                                     </MenuItem>
@@ -71,6 +71,7 @@ const ProSide = (props) => {
                         </Menu>
                     </SidebarContent>
                 </PerfectScrollbar>
+                
                 <SidebarFooter>
                     <Row>
                         <Col span={8}>

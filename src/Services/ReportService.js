@@ -1,5 +1,5 @@
 import { fetch } from "../Helpers/HttpUtil";
-import { GetCounterWiseTotalCollectionAmt, GetDatewiseCollectionDetails, GetDatewiseCollectionDetailsByCounter, GetRegisteredVehicleDetailsBydate, getReservationDetailsByDateForWeb, getRouteAssignedTotalAmountByDateandUserId, GetRouteWiseAssignedVehicleCountByDate } from "../Helpers/Url";
+import { GetBillChargeTotalByBillTypeAndDateRange, GetBillingDetailsByDateRange, GetBillingSummaryByDateRangeAndCounterId, GetCounterWiseTotalCollectionAmt, GetDatewiseCollectionDetails, GetDatewiseCollectionDetailsByCounter, GetRegisteredVehicleDetailsBydate, getReservationDetailsByDateForWeb, getRouteAssignedTotalAmountByDateandUserId, GetRouteWiseAssignedVehicleCountByDate } from "../Helpers/Url";
 
 export const getDatewiseCollectionDetailsApi = async (data, successCallback) => {
     try {
@@ -18,6 +18,42 @@ export const getDatewiseRegisteredVehicleDetailsApi = async (data, successCallba
         const response = await fetch(`${GetRegisteredVehicleDetailsBydate}?fromdate=${data.fromdate}&todate=${data.todate}&companyId=${data.companyId}`);
         if (response?.status === 200) {
             successCallback(response?.data?.vehicleDetails)
+        } else
+            successCallback([])
+    } catch (error) {
+        successCallback([])
+    }
+}
+
+
+export const getTotalBillCharge = async (data, successCallback) => {
+    try {
+        const response = await fetch(`${GetBillChargeTotalByBillTypeAndDateRange}?fromdate=${data.fromdate}&todate=${data.todate}`);
+        if (response?.status === 200) {
+            successCallback(response?.data?.VehicleBillingSum)
+        } else
+            successCallback([])
+    } catch (error) {
+        successCallback([])
+    }
+}
+export const getBillingDetailsByDateRange = async (data, successCallback) => {
+    try {
+        const response = await fetch(`${GetBillingDetailsByDateRange}?fromdate=${data.fromdate}&todate=${data.todate}&counterId=${data.CounterId}&billtype=${data.BillID}`);
+        if (response?.status === 200) {
+            successCallback(response?.data?.VehicleBillingDetails)
+        } else
+            successCallback([])
+    } catch (error) {
+        successCallback([])
+    }
+}
+
+export const getBillingSummary = async (data, successCallback) => {
+    try {
+        const response = await fetch(`${GetBillingSummaryByDateRangeAndCounterId}?fromdate=${data.fromdate}&todate=${data.todate}&counterId=${data.CounterId}&billtype=${data.BillID}`);
+        if (response?.status === 200) {
+            successCallback(response?.data?.CounterWiseSummary)
         } else
             successCallback([])
     } catch (error) {

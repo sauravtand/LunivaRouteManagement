@@ -77,6 +77,7 @@ useEffect(() => {
 
   setBillingTypeDetailsApi(data, (res) => {
     if (res?.SuccessMsg === true) {
+        console.log(res,"helloooooo")
         message.success(res?.Message);
         navigate(`/admin/billingtype`)
     } else {

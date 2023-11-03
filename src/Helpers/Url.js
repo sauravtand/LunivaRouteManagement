@@ -248,6 +248,11 @@ export const GetDatewiseCollectionDetails = 'GetDatewiseCollectionDetails'
  * @param: ?fromdate={fromdate}&todate={todate}&companyId= (in url)
  */
 export const GetRegisteredVehicleDetailsBydate = 'GetRegisteredVehicleDetailsBydate'
+export const GetBillChargeTotalByBillTypeAndDateRange='GetBillChargeTotalByBillTypeAndDateRange'
+
+export const GetBillingDetailsByDateRange = 'GetBillingDetailsByDateRange'
+
+export const GetBillingSummaryByDateRangeAndCounterId='GetBillingSummaryByDateRangeAndCounterId'
 
 /**
  * @desc: Get Date wise Collection Details By Counter

@@ -40,6 +40,10 @@ import ReservationDetails from "../Pages/PrivatePages/Report/ReservationDetails"
 import CancelReserve from "../Pages/PrivatePages/Route/CancelReserve";
 import BillingType from "../Pages/PrivatePages/Billing/BillingType";
 import AddBillingType from "../Pages/PrivatePages/Billing/AddBillingType";
+import Rashid from "../Pages/PrivatePages/Rashid/Rashid";
+import BillingDetails from "../Pages/PrivatePages/Rashid/BillingDetails";
+import TotalBillCharge from "../Pages/PrivatePages/Rashid/TotalBillCharge";
+import BillingSummary from "../Pages/PrivatePages/Rashid/BillingSummary";
 
 /**
  * @desc: define static routes here
@@ -101,6 +105,16 @@ const MainRoute = () => {
       <Route exact path='/reports/totalAmount' element={<TotalAmountByUser />} />
       <Route exact path='/reports/reservationDetails' element={<ReservationDetails />} />
       {/* report details */}
+
+        {/* report details */}
+        <Route exact path='/rashid' element={<Rashid />} />
+        <Route exact path='/billingdetails' element={<BillingDetails />} />
+        <Route exact path='/totalbillcharge' element={<TotalBillCharge />} />
+        <Route exact path='/totalbillingsummary' element={<BillingSummary />} />
+      
+      {/* report details */}
+
+    
 
       {
         roleAndRights.showOnlySuperAdmin &&
