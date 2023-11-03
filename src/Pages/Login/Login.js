@@ -10,7 +10,7 @@ import {
 import useToken from '../../CustomHooks/useToken';
 import { useNavigate } from "react-router-dom";
 import { getValidLoginApi } from '../../Services/LoginService';
-import logoImg from '../../Assets/Images/logo2.png'
+import logoImg from '../../Assets/Images/logo4.png'
 import styled from 'styled-components';
 import { getCompanyDetailsApi } from '../../Services/MiscService';
 

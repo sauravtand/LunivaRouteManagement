@@ -37,7 +37,7 @@ const PrintButton = ({
             let refName = `
     <div >
   
-        <h2 style='text-align:center;'>  श्री स्थानिय यातायात प्रा.लि.</h2>
+        <h2 style='text-align:center;'>  श्री पोखरा यातायात प्रा.लि.</h2>
         <p style='text-align:center;'>पोखरा, ०१-५९०९०८५</p>
         <h4 style='text-align:center;text-decoration:underline;'>${Title}</h4>
         

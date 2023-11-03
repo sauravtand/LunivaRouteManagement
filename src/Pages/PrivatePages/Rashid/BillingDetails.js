@@ -19,7 +19,6 @@ const BillingDetails = () => {
 
 
   const makeTableData = (res) => {
-    console.log(res, "its main res")
     if (res.length !== 0) {
       let tableKeys = Object.keys(res[0]);
       let data = []
@@ -31,43 +30,48 @@ const BillingDetails = () => {
           key: ele,
         })
       })
-      console.log(data, 'its main data ')
+   
 
       setDataHead(data)
       setDataSource(res)
+      setFilterData(res)
     } else {
       setDataHead([])
       setDataSource([])
     }
-    //  console.log(dataHead,"dataherad")
+    
+    
   }
 
   const returnFilterData = (res) => {
 
-    setFilterData(res)
     let data = {
       fromdate: res.FromTo[0].format(dateFormat),
       todate: res.FromTo[1].format(dateFormat),
       CounterId: res.CounterId,
       BillID: res.BillID,
     }
-    console.log(data, "its data")
+ 
     getBillingDetailsByDateRange(data, (newRes) => {
-      console.log(newRes, "itsnew res")
+     
       makeTableData(newRes)
     })
   }
 
   const filterTableData = () => {
+   
     if (searchQuery.trim() === '') {
       // If the search query is empty, use the original data
-      setDataSource(filterData);
-    } else {
-      const searchValue = parseFloat(searchQuery);
+      setDataSource(dataSource);
+    } else if(searchQuery!==''){
+      const searchValue = searchQuery;
       const filteredData = filterData.filter(item =>
-        item.Bid === searchValue
-      );
+        item.BId == searchValue
+              );
+      console.log(filterData,"filter")
       setDataSource(filteredData);
+    }else{
+      setDataSource(dataSource);
     }
   };
   return (
@@ -98,6 +102,8 @@ const BillingDetails = () => {
             </Button>
           </Col>
         </Row>
+
+
       </Card>
       <ExcelExportBtn
         dataHead={dataHead}
